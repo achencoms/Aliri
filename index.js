@@ -13,11 +13,11 @@ document.getElementById("Message")
 function postDATA(x) {
   $.ajax({
     type: "GET",
-    url: "/pythoncode",
-    data: {param : x},
+    url: "/process",
+    data: {'input' : x},
     sucess: function(d){
       d = JSON.parse(d);
-      return d.PLACEHOLDERresponse;
+      console.log(d);
     }
   });
 }
