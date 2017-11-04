@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+  <meta = charset="utf-8">
+  <meta = http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name = "viewport" content="width = device-width, initial-scale = 1">
+  <title>Chat Bot</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body>
+
+  <div class = "container">
+
+    <div class ="form-control">
+      <div class="media">
+        <div class="media-body">
+          <h1 class="text-center"> Chat Bot </h1>
+        </div>
+      </div>
+    </div>
+
+    <div id=display class ="form-control">
+      <div class="media">
+        <div class="media-body">
+          <h4 class="text-left text-primary"> User </h4>
+          <p> Example </p>
+          <h4 class="text-right text-success"> Bot </h4>
+          <p class="text-right"> Chat Bot's response </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class = "container">
+    <div class="form-group">
+      <label for="messages">Message:</label>
+      <input class="form-control input-lg" type="text" id="Message"></textarea>
+      <button type="submit" class="btn btn-danger" id="Send" role="button">Submit</button>
+    </div>
+    <p id="display"></p>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="index.js"></script>
+</body>
+</html>
