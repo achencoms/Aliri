@@ -1,6 +1,8 @@
 import watson_developer_cloud
 import requests
 import json
+import base64
+from PIL import Image
 
 conversation = watson_developer_cloud.ConversationV1(
   username = '0967e618-5534-4a0e-87b8-329a7849af63',
@@ -16,13 +18,18 @@ def wat(q):
 		}
 	)
     text = mr["output"]["text"][0]
-    out = "Aliri responded with: " + text
-    return out
+    return text
 
 def wolf(q):
-    payload = {'i' : q, 'output' : 'json'}
-    queryCheck = requests.get("http://www.wolframalpha.com/queryrecognizer/query.jsp?appid=DEMO&mode=Default", params = payload)
-    if queryCheck.json()['query'][0]['accepted'] == "true":
-        result = requests.get("http://api.wolframalpha.com/v1/result?appid=2HAULH-VTUJJEJ65R", params = payload)
-        return result.text
-    return "Wolfram Alpha does not understand your reponse"
+    if "graph" in q:
+        payload = {'i' : q}
+        r = requests.get('http://api.wolframalpha.com/v1/simple?appid=2HAULH-VTUJJEJ65R', params = payload)
+        return r.url
+    else:
+        payload = {'i' : q, 'output' : 'json'}
+        queryCheck = requests.get("http://www.wolframalpha.com/queryrecognizer/query.jsp?appid=DEMO&mode=Default", params = payload)
+        if queryCheck.json()['query'][0]['accepted'] == "true":
+            result = requests.get("http://api.wolframalpha.com/v1/result?appid=2HAULH-VTUJJEJ65R", params = payload)
+            if result.text != "No short answer available":
+                return result.text
+            return "Sorry, I don't understand what you're trying to ask."
