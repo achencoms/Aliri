@@ -16,8 +16,9 @@ function postDATA(x) {
     url: "/process",
     data: {'input' : x},
     success: function(d){
+      var img;
       if(d['out'].inclues('http')){
-        var img = document.createElement("img");
+        img = document.createElement("img");
         img.src = d['out'];
         img.className = "img-responsive float-right";
         img.style = "width: 100%;";
