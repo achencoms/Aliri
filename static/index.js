@@ -16,14 +16,6 @@ function postDATA(x) {
     url: "/process",
     data: {'input' : x},
     success: function(d){
-      var img;
-      if(d['out'].inclues('http')){
-        img = document.createElement("img");
-        img.src = d['out'];
-        img.className = "img-responsive float-right";
-        img.style = "width: 100%;";
-      }
-      img.onload = function () {
         d = JSON.parse(d);
         if(!d['out'].includes('http')) responsiveVoice.speak(d['out'], "US English Female");
         display.innerHTML += '<div class="media">'
@@ -36,6 +28,10 @@ function postDATA(x) {
         display.innerHTML += '<div class="media-body">'
         display.innerHTML += '<h4 class="text-right text-success"> Bot </h4>'
         if(d['out'].includes('http')){
+         var img = document.createElement("img");
+         img.src = d['out'];
+         img.className = "img-responsive float-right";
+         img.style = "width: 100%;";
          display.appendChild(img);
         }
         else{
@@ -44,7 +40,6 @@ function postDATA(x) {
         display.innerHTML += '</div></div>'
         document.getElementById("Message").value = ""
       }
-    }
   });
 }
 
