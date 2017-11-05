@@ -11,13 +11,13 @@ document.getElementById("Message")
 });
 
 function postDATA(x) {
-  var rep;
   $.ajax({
     type: "GET",
     url: "/process",
     data: {'input' : x},
     success: function(d){
       d = JSON.parse(d);
+      responsiveVoice.speak(d['out'], "US English Female");
       display.innerHTML += '<div class="media">'
       display.innerHTML += '<div class="media-body">'
       display.innerHTML += '<h4 class="text-left text-primary"> User </h4>'
@@ -27,14 +27,23 @@ function postDATA(x) {
       display.innerHTML += '<div class="media">'
       display.innerHTML += '<div class="media-body">'
       display.innerHTML += '<h4 class="text-right text-success"> Bot </h4>'
-      display.innerHTML += '<p class="text-right">' + d['out'] + '</p>'
+      if(d['out'].includes('http')){
+        var img = document.createElement("img");
+        img.src = d['out'];
+        img.className = "img-responsive float-right";
+        img.style = "width: 100%;";
+        display.appendChild(img);
+      }
+      else{
+        display.innerHTML += '<p class="text-right">' + d['out'] + '</p>'
+      }
       display.innerHTML += '</div></div>'
-
       document.getElementById("Message").value = ""
     }
   });
-  console.log(rep);
 }
+
+
 
 button.onclick = function() {
   var value = input.value
