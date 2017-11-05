@@ -17,7 +17,7 @@ function postDATA(x) {
     data: {'input' : x},
     success: function(d){
       d = JSON.parse(d);
-      responsiveVoice.speak(d['out'], "US English Female");
+      if(!d['out'].includes('http')) responsiveVoice.speak(d['out'], "US English Female");
       display.innerHTML += '<div class="media">'
       display.innerHTML += '<div class="media-body">'
       display.innerHTML += '<h4 class="text-left text-primary"> User </h4>'
