@@ -17,8 +17,11 @@ def process():
 	data = request.args
 	i = data.get('input')
 	wat, wolf = api.wat(i),api.wolf(i)
+	print wolf
 	message = wat
-	if message == "Aliri responded with: I didn't understand. You can try rephrasing.":
+	if message == "temp":
+		message = api.wolf(message)
+	if message == "I didn't understand. You can try rephrasing.":
 		message = wolf
 	output = {"out" : message}
 	return json.dumps(output)
