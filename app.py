@@ -16,14 +16,18 @@ def home():
 def process():
 	data = request.args
 	i = data.get('input')
-	wat, wolf = api.wat(i),api.wolf(i)
-	print wolf
-	message = wat
-	if message == "temp":
-		message = api.wolf(message)
-	if message == "I didn't understand. You can try rephrasing.":
-		message = wolf
-	output = {"out" : message}
+	wat = api.wat(i)
+	output = {}
+	message = ""
+	if wat[:4] == "poke":
+		message = api.poke(wat[5:])
+		output = {"out" : message[0], "check" : wat[:4] , "in" : message[1] , "sprite" : message[2], "ability" : message[3]}
+	if wat == "temp":
+		message = api.wolf(wat)
+		output = {"out" : message}
+	if wat == "I didn't understand. You can try rephrasing.":
+		message = api.wolf(i)
+		output = {"out" : message}
 	return json.dumps(output)
 
 if __name__ == "__main__":
