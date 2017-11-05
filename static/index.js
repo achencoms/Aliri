@@ -28,7 +28,7 @@ function postDATA(x) {
 
         display.innerHTML += '<div class="media">'
         display.innerHTML += '<div class="media-body">'
-        display.innerHTML += '<h4 class="text-right text-success"> Bot </h4>'
+        display.innerHTML += '<h4 class="text-right text-success"> Aliri </h4>'
 
         if(d['check'] == 'poke'){
          console.log(d['ability']);

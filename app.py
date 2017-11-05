@@ -17,8 +17,8 @@ def process():
 	data = request.args
 	i = data.get('input')
 	wat = api.wat(i)
-	output = {}
-	message = ""
+	message = wat
+	output = {'out' : wat}
 	if wat[:4] == "poke":
 		message = api.poke(wat[5:])
 		output = {"out" : message[0], "check" : wat[:4] , "in" : message[1] , "sprite" : message[2], "ability" : message[3]}
